@@ -7,7 +7,7 @@ error: RPC failed; HTTP 403 curl 22 The requested URL returned error: 403 Forbid
 ####################################################################################################
 
 ##alias
-cybage@master:~$ alias
+@mr:~$ alias
 alias a='devapp'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias devapp='kubectl -n dev-pldev-app'
@@ -27,17 +27,16 @@ alias uiapp='kubectl -n dev-plui-app'
 alias uipl='kubectl -n dev-plui-pl'
 
 ##sample etc host file
-cybage@master:~$ cat /etc/hosts
+@master:~$ cat /etc/hosts
 127.0.0.1 localhost localhost.localdomain
-127.0.1.1	master.cybage.com	master
+127.0.1.1	master..com	master
 
 # The following lines are desirable for IPv6 capable hosts
 ::1 ip6-localhost ip6-loopback localhost6 localhost6.localdomain
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 # Ansible inventory hosts BEGIN
-172.27.15.68 master master.cluster.local app-pldev.cybage.com pl-pldev.cybage.com app-devint.cybage.com pl-devint.cybage.com app-plui.cybage.com pl-plui.cybage.com pl-pletl.cybage.com
-172.27.15.86 node1 node1.cluster.local
+172.27.15.68 master master.cluster.local 
 172.27.15.137 node2 node2.cluster.local
 172.27.15.129 node3 node3.cluster.local
 172.27.15.61 node4 node4.cluster.local
@@ -55,7 +54,7 @@ ls /etc/apt/sources.list.d/
 temp
 
 #connect mariadb
-mysql --user=root --password=cybage@dm -h 172.27.15.159  -P 3306
+mysql --user=root --pas  -P 3306
 #https://mariadb.com/kb/en/library/mysql-command-line-client/
 
 ##containers
@@ -130,7 +129,7 @@ sudo apt install mysql-client-5.7
 #Caused by: java.sql.SQLException: Host '172.27.15.72' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'
 
 #flush ip
-mysqladmin -h 172.27.15.115 -P 3301 -u root -p flush-hosts
+m -P 3301 -u root -p flush-hosts
 
 #to zip a file
 zip -r filename.zip foldername1/ foldername2/
@@ -184,7 +183,7 @@ https://repo.skype.com/deb/dists/stable/main/binary-amd64/Packages
 sudo apt-get upgrade skypeforlinux
 
 #To disable firewall rules in ubuntu linux
-#https://www.cyberciti.biz/faq/turn-on-turn-off-firewall-in-linux/
+#https://www..biz/faq/turn-on-turn-off-firewall-in-linux/
 #Log in as root
 iptables-save > /root/firewall.rules
 iptables -F
@@ -261,11 +260,7 @@ Spread the word about Decisionmines, its importance and applicability
 
 
 #elk
-http://decisionmines-qa-int.cybage.com:9200/
-http://decisionmines-qa-int.cybage.com:5601/app/kibana#/home?_g=()
-https://hub.docker.com/r/elastic/elasticsearch/
-https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
-#giving correct permissions to filebeat and elastic
+
 chmod 644 elastic/config/filebeat.yml
 mkdir -p elastic/logs/elasticsearch elastic/data/elasticsearch
 chmod 777 elastic/logs/elasticsearch elastic/data/elasticsearch
@@ -438,7 +433,7 @@ grep -nr "1.1.5" --exclude-dir=.git
 https://stackoverflow.com/questions/8424228/export-import-jobs-in-jenkins
 
 #DM Jira Board
-https://decisionmines.atlassian.net/secure/RapidBoard.jspa?rapidView=8
+
 
 #Reverse search in linux-command-line
 In active terminal, ctrl+i key combination results to reverse-i-search
@@ -465,7 +460,7 @@ https://opensource.com/article/16/12/web-browsers-linux-command-line
 
 #printer
 echo -en "\rHello world\r\f" | smbclient "smb://172.27.172.100/CT2-3rdFloor" \
-"cybage@123" -c "print -" -N -U "prakashsinhaba" -W "cybage"
+ -c "print -" -N -U "prakashsinhaba" -W "cybage"
 
 
 se
@@ -518,18 +513,18 @@ sudo /etc/init.d/mysql start
 #https://stackoverflow.com/questions/5016505/mysql-grant-all-privileges-on-database
 GRANT ALL ON *.* TO 'root'@'192.168.1.%' identified by 'MY_PASSWORD';
 GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON artdb.* TO 'artifactory'@'*' IDENTIFIED BY 'cybage#123';
-GRANT ALL PRIVILEGES ON artdb.* TO 'artifactory'@'%' IDENTIFIED BY 'cybage#123';
+GRANT ALL PRIVILEGES ON artdb.* TO 'artifactory'@'*' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON artdb.* TO 'artifactory'@'%' ';
 
 
-docker run --name artifactory-host-mysql -e DB_TYPE=mysql -e DB_HOST=172.27.56.230 -e DB_URL='jdbc:mysql://172.27.56.230:3306/artdb?characterEncoding=UTF-8&elideSetAutoCommits=true' -e DB_PORT=3306  -e DB_USER=artifactory -e DB_PASSWORD=cybage#123 -d -p 8083:8083 --net=host -v /home/cybage/prakash/artifactory/mysql-connector-java-5.1.46.jar:/opt/jfrog/artifactory/tomcat/lib/mysql-connector-java-5.1.46.jar artifactory-hostmysql
+docker run --name artifactory-host-mysql -e DB_TYPE=mysql -e DB_URL='artdb?characterEncoding=UTF-8&elideSetAutoCommits=true' -e DB_PORT=3306  -e DB_USER=artifactory -e DB_PASSWORD=cybage#123 -d -p 8083:8083 --net=host -v /home/cybage/prakash/artifactory/mysql-connector-java-5.1.46.jar:/opt/jfrog/artifactory/tomcat/lib/mysql-connector-java-5.1.46.jar artifactory-hostmysql
 https://www.jfrog.com/confluence/display/RTF/Installing+with+Docker
 https://www.jfrog.com/jira/browse/RTFACT-14877 - similar issue oof db fail to start
 mysql username password root cybage#123 for all dbs and artifactory cybage#123 for artdb
 
 
 #with oss latest
-docker run --name artifactory-host-mysql -e DB_TYPE=mysql -e DB_HOST=172.27.56.230 -e DB_URL='jdbc:mysql://172.27.56.230:3306/artdb?characterEncoding=UTF-8&useSSL=false' -e DB_PORT=3306  -e DB_USER=artifactory -e DB_PASSWORD=cybage#123 -d -p 8083:8081 -v /home/cybage/prakash/artifactory/mysql-connector-java-5.1.46.jar:/opt/jfrog/artifactory/tomcat/lib/mysql-connector-java-5.1.46.jar docker.bintray.io/jfrog/artifactory-oss:latest
+docker run --name artifactory-host-mysql -e DB_TYPE=mysql  -e DB_URL='jdbc:mysql:/artdb?characterEncoding=UTF-8&useSSL=false' -e DB_PORT=3306  -e DB_USER=artifactory -e DB_PASSWORD=cybage#123 -d -p 8083:8081 -v /home/cybage/prakash/artifactory/mysql-connector-java-5.1.46.jar:/opt/jfrog/artifactory/tomcat/lib/mysql-connector-java-5.1.46.jar docker.bintray.io/jfrog/artifactory-oss:latest
 
 
 
@@ -570,8 +565,7 @@ grep -o '^[^#]*' file
 
 #nginx reverse proxy upstream
 upstream testservers {
-       server 172.27.15.47:30137;
-       server 172.27.15.83:30137;
+       serv
 }server {
    listen       80;
    server_name  dmsar.dm.com; location / {
@@ -979,8 +973,6 @@ sudo service docker restart
 minikube start --vm-driver="xhyve" --insecure-registry="http://prakashsinha-mint.cybage.com:5000/v2/"
 
 #local private registry image in k8s deployment
-#- image: prakashsinha-mint.cybage.com:5000/fenginx:latest
-        #imagePUllPolicy: ifNotPresent
 
 #Mount minikube over nfs
 minikube ssh "sudo mkdir -p /host-sources && sudo mount -t nfs -o nfsvers=3,tcp 192.168.99.1:${sources_dir} /host-sources"
@@ -997,7 +989,7 @@ spec:
     - sysctl -w vm.max_map_count=262144
     command:
     - /bin/sh
-    image: cybagesoftware/elasticsearch-oss:6.3.2
+    image: 
 
 #Vulcans Commands to find the Module Name and Image Name on docker-compose and kubernetes environment are
 #K8s Command  :
@@ -1019,13 +1011,6 @@ aws s3 ls --profile aws-cli-user
 
 #configure user profile
 aws configure --profile aws-cli-user
-
-#copy file to aws ec2 instance example
-scp -i "DM-Demo-POC-us-east-1-key.pem" conversionIQ_salesforce.py  ubuntu@ec2-34-225-83-89.compute-1.amazonaws.com:/home/ubuntu/
-ssh -i dev-ohio/devops-key.pem ubuntu@18.222.114.45
-scp -i "devops-key.pem" -r dm50etllib/*  ubuntu@18.222.114.45:/home/ubuntu/dm50etllib/
-ssh -i key/devops-key.pem ubuntu@10.0.102.4
-scp -i "devops-key.pem" -r dm50etllib/*  ubuntu@10.0.102.4:/app/decisionmines/tools/pentaho/data-integration/lib/
 
 
 
@@ -1051,17 +1036,16 @@ java.lang.NoSuchMethodError: No such DSL method 'steps' found among steps [Artif
 
 
 #team contacts temp
-https://decisionmines.atlassian.net/wiki/spaces/DM/pages/30085490/Team+Definition
+
 
 #printer configuration IP
-\\172.27.172.100
 
 #ct-share configuration IP
-#172.27.172.203 and domain cybage.com as workgroup
+
 
 
 #cyb temp
-http://cybintranet/sites/Home/default.aspx
+
 
 #
 #DecisionMines
@@ -1079,10 +1063,6 @@ alias dmssh166="ssh cybage@172.27.15.166"
 ####################################################################################################
 #########################################SCHEDULER AZKABAN###########################################
 ####################################################################################################
-
-sessionid="$(curl -s -X POST --data "action=login&username=dm-azkaban&password=cybage@123" http://pl-pldev.cybage.com:31588 | grep "session.id" | cut -c 19-54)"
-curl -s -X POST --data "session.id=$sessionid&action=create&name=dmines-daily&description=kapilsa" http://pl-pldev.cybage.com:31588/manager
-curl -s -X POST -H "Content-Type: multipart/form-data" -F "session.id=${sessionid}" -F "project=dminesdaily" -F "ajax=upload" -F "file=@dmines-daily.zip;type=application/zip" http://pl-pldev.cybage.com:31588/manager
 
 
 ##############################################################################################
@@ -1128,19 +1108,19 @@ git clone https://github.com/anchore/anchore-cli
   docker login
   anchore-cli image add openjdk:10-jdk
   anchore-cli image add docker.io/library/debian:latest
-  anchore-cli image add cybagesoftware/pl-scheduler-dev:latest
-  anchore-cli image add docker.io/library/cybagesoftware/pl-scheduler-dev:latest
-  anchore-cli image add docker.io/cybagesoftware/pl-scheduler-dev:latest
+  anchore-cli image add 
+  anchore-cli image add 
+  anchore-cli image add 
   anchore-cli --help
   anchore-cli registry --help
   anchore-cli registry add --help
   anchore-cli registry add REGISTRY docker.io REGISTRY_USER prakashsinhab  REGISTRY_PASS pu00170@
   anchore-cli registry add docker.io prakashsinhab  pu00170@
-  anchore-cli image add docker.io/cybagesoftware/pl-scheduler-dev:latest
-  anchore-cli image add docker.io/cybagesoftware/pl-redis-dev:latest
-  anchore-cli image add docker.io/cybagesoftware/grafana:6.2.4
-  sudo anchore-cli image add docker.io/cybagesoftware/grafana:6.2.4
-  anchore-cli image add docker.io/cybagesoftware/app-dashboard-web-rel:latest
+  anchore-cli image add 
+  anchore-cli image add
+  anchore-cli image add 
+  sudo anchore-cli image 
+  anchore-cli image add 
   anchore-cli image add openjdk:10-jdk
   history
   pwd
@@ -1150,16 +1130,16 @@ git clone https://github.com/anchore/anchore-cli
   ls -la
   ls -la .docker/
   cat .docker/config.json
-  anchore-cli image add https://index.docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli image add index.docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli image add docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli image add --debug docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli image add docker.io/cybagesoftware/app-dashboard-web-rel:latest --debug
-  anchore-cli --debug image vuln docker.io/library/debian:latest os
-  anchore-cli --debug image vuln docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli --debug image add docker.io/cybagesoftware/app-dashboard-web-rel:latest
+  anchore-cli image add https://index.docker.io/
+  anchore-cli image add 
+  anchore-cli image add
+  anchore-cli image add 
+  anchore-cli image add
+  anchore-cli --debug 
+  anchore-cli --debug 
+  anchore-cli --debug
   ps -ef | grep analy
-  anchore-cli --debug image add docker.io/cybagesoftware/app-dashboard-web-rel:latest
-  anchore-cli --debug image add docker.io/cybagesoftware/pl-dre-service-config-dev:1.6.0-SNAPSHOT-3fcdcaf-build5
-  anchore-cli image add docker.io/cybagesoftware/pl-dre-service-config-dev:0.0.1-SNAPSHOT-1bd9baf-build3
+  anchore-cli --debug 
+  anchore-cli --debug 
+  anchore-cli image add uild3
   ##
