@@ -35,7 +35,7 @@
 		<server>
 			<id>releases</id>
 			<username>deployment</username>
-			<password>cybage@123</password>
+			<password>abc@123</password>
 			<filePermissions>664</filePermissions>
 			<directoryPermissions>775</directoryPermissions>
 			<configuration>
@@ -44,7 +44,7 @@
 		<server>
 			<id>snapshots</id>
 			<username>deployment</username>
-			<password>cybage@123</password>
+			<password>abc@123</password>
 			<filePermissions>664</filePermissions>
 			<directoryPermissions>775</directoryPermissions>
 			<configuration>
