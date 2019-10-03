@@ -1,13 +1,13 @@
 FROM ubuntu:16.04
-LABEL maintainer "swatimag@cybage.com"
+LABEL maintainer "lok@gmail.com"
 
 #Installing git, curl, software-properties-common, oracle-java8-installer
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git curl software-properties-common openssh-server
 RUN git --version
-RUN git config --global user.name "swatimag"
-RUN git config --global user.email "swatimag@cybage.com"
+RUN git config --global user.name "lok"
+RUN git config --global user.email "lok@gmail.com"
 #Adding jenkins user
 RUN mkdir /var/run/sshd
 RUN useradd -ms /bin/bash jenkins
